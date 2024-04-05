@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="contract_enterprise_tree_view" model="ir.ui.view">
+            <field name="name">contract.enterprise.tree.view</field>
+            <field name="model">contract.enterprise</field>
+            <field name="arch" type="xml">
+                <tree string="Contracts">
+                    <field name="name" />
+                    <field name="start_date" />
+                    <field name="end_date" />
+                    <field name="type_contract" />
+                    <field name="sign_day" />
+                    <field name="salary_level" />
+                    <field name="effective_salary" />
+                    <field name="status" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="contract_enterprise_form_view" model="ir.ui.view">
+            <field name="name">contract.enterprise.form.view</field>
+            <field name="model">contract.enterprise</field>
+            <field name="arch" type="xml">
+                <form string="Contracts">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="start_date" />
+                            <field name="end_date" />
+                            <field name="type_contract" />
+                            <field name="sign_day" />
+                            <notebook>
+                                <page name="salary_level_info" string="Salary Level Info" colspan="2">
+                                    <group colspan="2">
+                                        <field name="salary_level" />
+                                    </group>
+                                    <group colspan="2">
+                                        <field name="status" colspan="10" nolabel="1" />
+                                    </group>
+                                </page>
+
+                                <page name="effective_salary_info" string="Effective Level Info" colspan="2">
+                                    <group colspan="5">
+                                        <field name="effective_salary" />
+                                    </group>
+                                    <group colspan="5">
+                                        <field name="status" colspan="10" nolabel="1" />
+                                    </group>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="contract_enterprise_action" model="ir.actions.act_window">
+            <field name="name">Contracts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">contract.enterprise</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="contract_enterprise_tree_view"/>
+        </record>
+
+
+        <record id="view_contract_enterprise_list" model="ir.ui.view">
+            <field name="name">contract.enterprise.list.view</field>
+            <field name="model">contract.enterprise</field>
+            <field name="arch" type="xml">
+                <tree string="Contracts">
+                    <field name="name" />
+                    <field name="start_date" />
+                    <field name="end_date" />
+                    <field name="type_contract" />
+                    <field name="sign_day" />
+                    <field name="salary_level" />
+                    <field name="effective_salary" />
+                    <field name="status" />
+                </tree>
+            </field>
+        </record>
+
+        <menuitem id="contract_enterprise_menu" name="Contracts" />
+        <menuitem id="contract_enterprise_menu_1" name="Contracts" parent="contract_enterprise_menu" action="contract_enterprise_action"/>
+    </data>
+</odoo>
