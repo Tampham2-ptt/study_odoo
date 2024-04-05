@@ -32,7 +32,7 @@
                             <field name="sign_day" />
                             <notebook>
                                 <page name="salary_level_info" string="Salary Level Info" colspan="2">
-                                    <group colspan="2">
+                                    <group colspan="10">
                                         <field name="salary_level" />
                                     </group>
                                     <group colspan="2">
