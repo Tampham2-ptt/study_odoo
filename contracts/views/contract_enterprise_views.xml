@@ -41,7 +41,7 @@
                                 </page>
 
                                 <page name="effective_salary_info" string="Effective Level Info" colspan="2">
-                                    <group colspan="2">
+                                    <group colspan="5">
                                         <field name="effective_salary" />
                                     </group>
                                     <group colspan="2">
