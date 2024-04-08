@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 
 {
-    'name': 'Enterprise Contract 2',
+    'name': 'Employee Directoty',
     'category': 'Website/Website',
-    'summary': 'contract_enterprise models',
+    'summary': 'employee_directoty models',
     'version': '1.0',
     'author': 'Pham tien tam',
     'description': """
-        This is a module used to sign contracts between businesses and employees
+        This is a module Employee Directory
     """,
-    'depends': ['employee_directory'],
+    'depends': [],
     'data': [
         'security/ir.model.access.csv',
-        'views/contract_enterprise_views.xml',
+        'views/employee_directory_views.xml',
     ],
     'installable': True,
     'application': True,
