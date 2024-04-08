@@ -20,7 +20,14 @@ class ContractEnterprise(models.Model):
     sign_date = fields.Datetime('sign date', required=True, select=True, default=_default_sign_date)
     salary_level = fields.Float('salary level', required=False, default=0)
     effective_salary = fields.Float('effective salary', required=False, default=0)
-    employee = fields.Many2one('employee.directory', string="Employee", required=True, ondelete='cascade')
+    employee_id = fields.Many2one('employee.directory', string="Employee", required=True, ondelete='cascade')
+    '''
+        ondelete : có 4 type
+            + cascade : khi một bản ghi được xóa, tất cả các bản ghi liên quan trong table con sẽ cũng được xóa.
+            + set null :  khi một bản ghi được xóa, trường Many2one sẽ được đặt thành giá trị NULL.
+            + restrict : Odoo sẽ không cho phép xóa bản ghi nếu có bản ghi liên quan trong bảng con.
+            + no action : Odoo sẽ không thực hiện bất kỳ hành động nào khi một bản ghi được xóa. Bạn phải quản lý các hành động liên quan bằng cách thủ công
+    '''
     sign_day = fields.Date(string="Sign Date")
     status = fields.Selection([
                 ('new', 'New'),
@@ -35,3 +42,9 @@ class ContractEnterprise(models.Model):
     def _compute_total_salary(self):
         for record in self:
             record.total_salary = record.salary_level + record.effective_salary
+
+    '''
+    compute và related
+    compute : được sử dụng để tính toán giá trị dựa trên các trường khác trong cùng một bảng hoặc từ các bảng khác
+    related : được sử dụng để truy xuất và hiển thị giá trị của một trường từ một bảng khác mà đã có quan hệ với bảng hiện tại
+    '''
