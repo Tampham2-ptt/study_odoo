@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="hr_employee_form_view_inherit" model="ir.ui.view">
+            <field name="name">Add gender field</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="after">
+                    <button name="action_submit" string="Submit" type="object"/>
+                    <button name="action_approve" string="Approve" type="object"/>
+                    <button name="action_terminate" string="Terminate" type="object"/>
+                    <button name="action_set_to_draft" string="Draft" type="object"/>
+                </xpath>
+                <xpath expr="//field[@name='country_of_birth']" position="after">
+                    <field name="status"></field>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="hr_employee_search_view_inherit" model="ir.ui.view">
+            <field name="name">Add filter search</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='parent_id']" position="inside">
+                    <filter string="Approved" name="status_approved" domain="[('status', '=', 'approved')]" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_employee_form_view_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.form.view</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='hr_settings']" position="after">
+                    <page name="work_experience" string="Work Experience" groups="hr.group_hr_user">
+                         <field name="work_experiences_ids" mode="tree,kanban"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
