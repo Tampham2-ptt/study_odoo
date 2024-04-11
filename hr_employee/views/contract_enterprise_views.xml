@@ -36,6 +36,9 @@
                                     <field name="salary_level" />
                                     <field name="effective_salary" />
                                     <field name="employee_id" />
+                                    <field name="role_name" />
+                                    <field name="level_name" />
+                                    <field name="job_name" />
                                 </group>
                             </div>
                             <div style="flex: 1; text-align: right;">
@@ -76,6 +79,16 @@
             </field>
         </record>
 
+        <record id="action_contract_update_status" model="ir.actions.server">
+            <field name="name">Update Status 2</field>
+            <field name="model_id" ref="hr_employee.model_contract_enterprise"/>
+            <field name="binding_model_id" ref="hr_employee.model_contract_enterprise"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.action_update_status()
+            </field>
+        </record>
 
 
         <menuitem id="contract_enterprise_menu" name="Contracts" />

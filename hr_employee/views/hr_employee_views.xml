@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <record id="hr_employee_form_view_inherit" model="ir.ui.view">
-            <field name="name">Add gender field</field>
+            <field name="name">Add button</field>
             <field name="model">hr.employee</field>
             <field name="inherit_id" ref="hr.view_employee_form" />
             <field name="arch" type="xml">
@@ -12,8 +12,13 @@
                     <button name="action_terminate" string="Terminate" type="object"/>
                     <button name="action_set_to_draft" string="Draft" type="object"/>
                 </xpath>
-                <xpath expr="//field[@name='country_of_birth']" position="after">
-                    <field name="status"></field>
+                <xpath expr="//field[@name='parent_id']" position="replace">
+                    <field name="status" />
+                </xpath>
+                <xpath expr="//page[@name='hr_settings']" position="after">
+                    <page name="work_experience" string="Work Experience" groups="hr.group_hr_user">
+                         <field name="work_experiences_ids" mode="tree,kanban"/>
+                    </page>
                 </xpath>
             </field>
         </record>
@@ -30,16 +35,14 @@
             </field>
         </record>
 
-        <record id="hr_employee_form_view_inherit" model="ir.ui.view">
-            <field name="name">hr.employee.form.view</field>
-            <field name="model">hr.employee</field>
-            <field name="inherit_id" ref="hr.view_employee_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//page[@name='hr_settings']" position="after">
-                    <page name="work_experience" string="Work Experience" groups="hr.group_hr_user">
-                         <field name="work_experiences_ids" mode="tree,kanban"/>
-                    </page>
-                </xpath>
+        <record id="action_hr_employee_update_status" model="ir.actions.server">
+            <field name="name">Update Status</field>
+            <field name="model_id" ref="hr_employee.model_hr_employee"/>
+            <field name="binding_model_id" ref="hr_employee.model_hr_employee"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.action_update_status()
             </field>
         </record>
     </data>

@@ -9,10 +9,9 @@
     'description': """
         This is a module used to sign contracts between businesses and employees
     """,
-    'depends': ['employee_directory', 'hr'],
+    'depends': ['hr'],
     'data': [
         'security/ir.model.access.csv',
-        'views/contract_enterprise_views.xml',
         'views/work_experiences_views.xml',
     ],
     'installable': True,

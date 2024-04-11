@@ -27,3 +27,8 @@ class HrEmployee(models.Model):
 
     def action_set_to_draft(self):
         self.status = 'draft'
+
+    def action_update_status(self):
+        for record in self:
+            record.status = "approved"
+

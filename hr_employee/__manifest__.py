@@ -9,10 +9,11 @@
     'description': """
         This is a module Hr Employee
     """,
-    'depends': ['hr'],
+    'depends': ['hr', 'contracts'],
     'data': [
         'security/ir.model.access.csv',
-        'views/hr_employee_views.xml'
+        'views/hr_employee_views.xml',
+        'views/contract_enterprise_views.xml',
     ],
     'installable': True,
     'application': True,
