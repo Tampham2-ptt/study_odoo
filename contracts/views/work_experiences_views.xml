@@ -78,8 +78,7 @@
         <menuitem id="job_menu_1" name="Job" parent="job_menu" action="job_action"/>
 
 
-<!--        level     -->
-                <record id="level_tree_view" model="ir.ui.view">
+        <record id="level_tree_view" model="ir.ui.view">
             <field name="name">level.tree.view</field>
             <field name="model">level</field>
             <field name="arch" type="xml">
@@ -139,7 +138,7 @@
             <field name="name">work.experiences.form.view</field>
             <field name="model">work.experiences</field>
             <field name="arch" type="xml">
-                <form string="Level">
+                <form string="Work Experience">
                     <sheet>
                             <group>
                                 <field name="from_date" />
@@ -157,7 +156,7 @@
         </record>
 
         <record id="work_experiences_action" model="ir.actions.act_window">
-            <field name="name">work_experiences</field>
+            <field name="name">Work Experiences</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">work.experiences</field>
             <field name="view_mode">tree,form</field>
@@ -165,6 +164,6 @@
         </record>
 
         <menuitem id="work_experiences" name="Work Experiences" />
-        <menuitem id="work_experiences_1" name="Work Experience" parent="work_experiences" action="work_experiences_action"/>
+        <menuitem id="work_experiences_1" name="Work Experience" parent="work_experiences" action="work_experiences_action" />
     </data>
 </odoo>

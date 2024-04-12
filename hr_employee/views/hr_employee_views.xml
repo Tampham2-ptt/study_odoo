@@ -45,5 +45,12 @@
                 action = records.action_update_status()
             </field>
         </record>
+        <!--
+        type of field state :
+            + code: Executes python code.
+            + object_create: Create a new Record
+            + object_write: Update the record
+            + multi: Executes several actions.
+         -->
     </data>
 </odoo>
