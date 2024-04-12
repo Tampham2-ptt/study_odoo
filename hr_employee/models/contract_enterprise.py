@@ -38,13 +38,13 @@ class ContractEnterprise(models.Model):
 
     total_salary = fields.Float(string='Total Salary', compute='_compute_total_salary', store=True)
     # cách 1
-    role_name = fields.Char(compute='_compute_get_role_name', store=True, string='Role Name', readonly=False)
+    role_name = fields.Char(compute='_compute_get_info_work_experiences', store=True, string='Role Name', readonly=False)
     # level_name = fields.Char(compute='_compute_get_level_name', store=True, string='Level Name', readonly=False)
     # cách 2
-    level_name = fields.Char(related="employee_id.work_experiences_ids.level_id.name", store=True, string='Level Name', readonly=False)
+    level_name = fields.Char(compute="_compute_get_info_work_experiences", store=True, string='Level Name', readonly=False)
     # job_name = fields.Char(compute='_compute_get_job_name', store=True, string='Job Name', readonly=False)
     # cách 3
-    job_name = fields.Char(compute='_compute_job_name', readonly=False)
+    job_name = fields.Char(compute='_compute_get_info_work_experiences', readonly=False)
     @api.depends('salary_level', 'effective_salary')
     def _compute_total_salary(self):
         for record in self:
@@ -58,15 +58,39 @@ class ContractEnterprise(models.Model):
             else:
                 record.role_name = record.employee_id.work_experiences_ids.role_id.name
 
-    #cách 3
     @api.depends('employee_id')
-    def _compute_job_name(self):
-        for record in self:
-            job_record = self.env['work.experiences'].search([('employee_id', '=', record.employee_id.id)]).job_id.name
-            if job_record:
-                record.job_name = job_record
+    def _compute_get_info_work_experiences(self):
+        for contract in self:
+            experiences = self.env['work.experiences'].search([
+                ('from_date', '<=', contract.end_date),
+                ('to_date', '>=', contract.start_date),
+                ('employee_id', '=', contract.employee_id.id)
+            ])
+            print(experiences)
+            if experiences:
+                contract.role_name = experiences[-1].role_id.name
+                contract.job_name = experiences[-1].job_id.name
+                contract.level_name = experiences[-1].level_id.name
             else:
-                record.job_name = False
+                experiences = self.env['work.experiences'].search([('employee_id', '=', contract.employee_id.id)])
+                if experiences:
+                    contract.role_name = experiences[-1].role_id.name
+                    contract.job_name = experiences[-1].job_id.name
+                    contract.level_name = experiences[-1].level_id.name
+                else:
+                    contract.role_name = False
+                    contract.job_name = False
+                    contract.level_name = False
+
+    #cách 3
+    # @api.depends('employee_id')
+    # def _compute_job_name(self):
+    #     for record in self:
+    #         job_record = self.env['work.experiences'].search([('employee_id', '=', record.employee_id.id)]).job_id.name
+    #         if job_record:
+    #             record.job_name = job_record
+    #         else:
+    #             record.job_name = False
 
     # @api.depends('employee_id')
     # def _compute_get_level_name(self):
@@ -76,13 +100,13 @@ class ContractEnterprise(models.Model):
     #         else:
     #             record.level_name = record.employee_id.work_experiences_ids.level_id.name
 
-    @api.depends('employee_id')
-    def _compute_get_job_name(self):
-        for record in self:
-            if len(record.employee_id.work_experiences_ids) > 0:
-                record.job_name = record.employee_id.work_experiences_ids[-1].job_id.name
-            else:
-                record.job_name = record.employee_id.work_experiences_ids.job_id.name
+    # @api.depends('employee_id')
+    # def _compute_get_job_name(self):
+    #     for record in self:
+    #         if len(record.employee_id.work_experiences_ids) > 0:
+    #             record.job_name = record.employee_id.work_experiences_ids[-1].job_id.name
+    #         else:
+    #             record.job_name = record.employee_id.work_experiences_ids.job_id.name
 
 
     '''
