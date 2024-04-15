@@ -11,10 +11,10 @@
     """,
     'depends': ['hr'],
     'data': [
+        'security/work_experiences.xml',
         'security/ir.model.access.csv',
         'views/work_experiences_views.xml',
-        # 'security/security.xml',
-        'security/work_experiences.xml',
+
     ],
     'installable': True,
     'application': True,

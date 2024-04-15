@@ -18,8 +18,8 @@ class ContractEnterprise(models.Model):
     end_date = fields.Datetime('end date', required=True, select=True)
     type_contract = fields.Integer('contract type', required=True)
     sign_date = fields.Datetime('sign date', required=True, select=True, default=_default_sign_date)
-    salary_level = fields.Float('salary level', required=False, default=0)
-    effective_salary = fields.Float('effective salary', required=False, default=0)
+    salary_level = fields.Float('salary level', required=False, default=0, groups='contracts.contracts_group_personnel')
+    effective_salary = fields.Float('effective salary', required=False, default=0, groups='contracts.contracts_group_personnel')
     employee_id = fields.Many2one('hr.employee', string="Employee", required=True, ondelete='cascade')
     '''
         ondelete : có 4 type

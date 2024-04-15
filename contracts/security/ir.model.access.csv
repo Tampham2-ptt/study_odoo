@@ -2,4 +2,6 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_job,job,model_job,,1,1,1,1
 access_level,level,model_level,,1,1,1,1
 access_role,role,model_role,,1,1,1,1
-access_work_experiences,work.experiences,model_work_experiences,,1,1,1,1
+access_work_experiences,work.experiences,model_work_experiences,contracts_group_staff,1,0,1,0
+access_work_experiences_2,work.experiences,model_work_experiences,contracts_group_manage,1,1,1,1
+access_work_experiences_3,work.experiences,model_work_experiences,contracts_group_personnel,1,0,0,0

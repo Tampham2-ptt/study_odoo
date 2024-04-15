@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_hr_employee,hr.employee,model_hr_employee,,1,1,1,1
-access_contract_enterprise,contract.enterprise,model_contract_enterprise,,1,1,1,1
+access_contract_enterprise_1,contract.enterprise,model_contract_enterprise,contracts.contracts_group_manage,1,0,0,0
+access_contract_enterprise_2,contract.enterprise,model_contract_enterprise,contracts.contracts_group_personnel,1,1,1,0
+access_contract_enterprise_3,contract.enterprise,model_contract_enterprise,contracts.contracts_group_staff,0,0,0,0

@@ -79,8 +79,13 @@
             </field>
         </record>
 
+        <record id="menu_contracts_groups" model="res.groups">
+            <field name="name">Menu Contracts Groups</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+            <field name="implied_ids" eval="[(4, ref('contracts_group_personnel')),(4, ref('contracts_group_manage'))]"/>
+        </record>
 
         <menuitem id="contract_enterprise_menu" name="Contracts" />
-        <menuitem id="contract_enterprise_menu_1" name="Contracts" parent="contract_enterprise_menu" action="contract_enterprise_action"/>
+        <menuitem id="contract_enterprise_menu_1" name="Contracts" parent="contract_enterprise_menu" action="contract_enterprise_action" groups="menu_contracts_groups"/>
     </data>
 </odoo>

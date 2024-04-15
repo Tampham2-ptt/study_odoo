@@ -1,1 +1,1 @@
-from . import models, static
+from . import models
