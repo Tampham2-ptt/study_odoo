@@ -15,6 +15,7 @@
         'security/ir.model.access.csv',
         'views/hr_employee_views.xml',
         'views/contract_enterprise_views.xml',
+        'views/other_template.xml',
     ],
     'installable': True,
     'application': True,

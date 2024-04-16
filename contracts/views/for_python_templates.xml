@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="somePythonTemplate" name="Some Python Template">
+        <html>
+            <head>
+                <t t-call-assets="web.assets_frontend" />
+            </head>
+            <body>
+                <t t-call="website.layout">
+                    <!--t-call : để gọi một layout template khác vào một template hiện tại -->
+                    <div class="container">
+                        <div class="row py-5">
+                            <div class="col">
+                                <t t-set="foo">
+                                        <h1 style="text-align: center">Contract Enterprise Information</h1>
+                                    </t>
+                                <div t-if="show_name">
+                                    <t t-out="foo"/>
+                                    <table class="table table-bordered" border="2" cellspacing="2" cellpadding="2">
+                                        <thead>
+                                            <tr style="text-align: center">
+                                                <th>Name</th>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th>Type Contract</th>
+                                                <th>Sign Date</th>
+                                                <th>Salary Level</th>
+                                                <th>Effective Salary</th>
+                                                <th>Total Salary</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="contracts" t-as="contract">
+                                                <t t-set="total_salary" t-value="contract.salary_level + contract.effective_salary" />
+                                                <tr style="text-align: center" t-attf-data="row {{ contract.id }}" t-att="{'id': contract.id, 'name': contract.name}">
+                                                    <!--
+                                                     t-esc : là 1 atts dùng để hiển thị dữ liệu trực tiếp từ python
+                                                             Khi sử dụng t-esc, Odoo sẽ tự động escape các ký tự đặc biệt (như &, <, >) trong dữ liệu trước khi hiển thị.
+                                                             Thường an toàn hơn khi hiển thị dữ liệu từ nguồn không đáng tin cậy
+                                                      -->
+                                                    <td><t t-esc="contract.name"/></td>
+                                                    <!--
+                                                    t-out : cũng dùng để hiển dữ liệu trực tiếp từ python
+                                                            Không escape dữ liệu, bạn cần phải tự đảm bảo rằng dữ liệu đã được escape trước khi sử dụng.
+                                                            Nhanh hơn t-esc nhưng có thể gây ra lỗi an ninh nếu không được sử dụng đúng cách.
+                                                    -->
+                                                    <td><t t-out="contract.start_date or 'N/A'"/></td>
+                                                    <td><t t-esc="contract.end_date or 'N/A'"/></td>
+                                                    <td><t t-esc="contract.type_contract or 'N/A'"/></td>
+                                                    <td><t t-esc="contract.sign_date or 'N/A'"/></td>
+                                                    <td><t t-esc="contract.salary_level or 'N/A'"/></td>
+                                                    <td><t t-esc="contract.effective_salary or 'N/A'"/></td>
+                                                    <td><t t-esc="total_salary or 'N/A'"/></td>
+                                                    <td><t t-esc="contract.status or 'N/A'"/></td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                    <t t-call="hr_employee.other_template" />
+                                </div>
+                                <div t-else="">
+                                    <h1>No Data !</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </body>
+        </html>
+    </template>
+</odoo>
