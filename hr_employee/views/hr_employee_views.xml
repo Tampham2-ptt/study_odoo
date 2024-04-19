@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="hr_employee_form_view_inherit" model="ir.ui.view">
+            <field name="name">Add button</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="after">
+                    <button name="action_submit" string="Submit" type="object"/>
+                    <button name="action_approve" string="Approve" type="object"/>
+                    <button name="action_terminate" string="Terminate" type="object"/>
+                    <button name="action_set_to_draft" string="Draft" type="object"/>
+                </xpath>
+                <xpath expr="//field[@name='parent_id']" position="replace">
+                    <field name="status" />
+                </xpath>
+                <xpath expr="//page[@name='hr_settings']" position="after">
+                    <page name="work_experience" string="Work Experience" groups="hr.group_hr_user">
+                         <field name="work_experiences_ids" mode="tree,kanban"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="hr_employee_search_view_inherit" model="ir.ui.view">
+            <field name="name">Add filter search</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='parent_id']" position="inside">
+                    <filter string="Approved" name="status_approved" domain="[('status', '=', 'approved')]" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_hr_employee_update_status" model="ir.actions.server">
+            <field name="name">Update Status</field>
+            <field name="model_id" ref="hr_employee.model_hr_employee"/>
+            <field name="binding_model_id" ref="hr_employee.model_hr_employee"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.action_update_status()
+            </field>
+        </record>
+        <!--
+        type of field state :
+            + code: Executes python code.
+            + object_create: Create a new Record
+            + object_write: Update the record
+            + multi: Executes several actions.
+         -->
+    </data>
+</odoo>

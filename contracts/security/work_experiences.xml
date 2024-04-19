@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="module_contract" model="ir.module.category">
+           <field name="name">Contracs</field>
+           <field name="sequence">10</field>
+        </record>
+
+        <record id="module_contract_user" model="ir.module.category">
+           <field name="name">Contracs</field>
+           <field name="parent_id" ref="module_contract" />
+           <field name="description">Helps you handle education application</field>
+           <field name="sequence">10</field>
+        </record>
+
+        <record id="contracts_group_staff" model="res.groups">
+           <field name="name">Staff</field>
+           <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+           <field name="category_id" ref="module_contract_user" />
+           <field name="comment">Staff Rights</field>
+        </record>
+
+        <record id="contracts_group_manage" model="res.groups">
+           <field name="name">Manage</field>
+           <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+           <field name="category_id" ref="module_contract_user" />
+           <field name="comment">Manage Rights</field>
+        </record>
+
+        <record id="contracts_group_personnel" model="res.groups">
+           <field name="name">Personnel</field>
+           <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
+           <field name="category_id" ref="module_contract_user" />
+           <field name="comment">Personnel Rights</field>
+        </record>
+
+    </data>
+</odoo>

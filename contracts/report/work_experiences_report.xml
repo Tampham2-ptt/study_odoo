@@ -1,0 +1,10 @@
+<odoo>
+     <record id="action_contract_info" model="ir.actions.report">
+        <field name="name">Work Experiences Information</field>
+        <field name="model">work.experiences</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">contracts.work_experiences_template</field>
+        <field name="binding_model_id" ref="model_work_experiences"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

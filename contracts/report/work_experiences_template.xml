@@ -1,0 +1,117 @@
+<odoo>
+<!--    <template id="work_experiences_template">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <t t-foreach="docs" t-as="work_experience">-->
+<!--                <t t-call="web.external_layout">-->
+<!--                    <div class="page">-->
+<!--                        <h1 style="text-align:center">Work Experiences Information</h1>-->
+<!--                        <div>-->
+<!--                            <div class="name-company" style="display: flex">-->
+<!--                                <span style="font-size:25px; font-weight: bold;margin-right: 25px" ><strong>Employee Name:</strong> <t t-esc="work_experience.employee_id.name or 'N/A'"/></span>-->
+<!--                                <span style="font-size:25px; font-weight: bold"><strong>Company Name:</strong> <t t-esc="work_experience.company or 'N/A'"/></span>-->
+<!--                            </div>-->
+<!--                            <div>-->
+<!--                                <p><h4><strong>Job Name:</strong> <t t-esc="work_experience.job_id.name or 'N/A'"/></h4></p>-->
+<!--                                <p><h4><strong>Role Name:</strong> <t t-esc="work_experience.role_id.name or 'N/A'"/></h4></p>-->
+<!--                                <p><h4><strong>Level Name:</strong> <t t-esc="work_experience.level_id.name or 'N/A'"/></h4></p>-->
+<!--                                <p><h4><strong>From Date:</strong> <t t-esc="work_experience.from_date"/></h4></p>-->
+<!--                                <p><h4><strong>To Date:</strong> <t t-esc="work_experience.to_date or 'N/A'"/></h4></p>-->
+<!--                                <p><h4><strong>Reference:</strong> <t t-esc="work_experience.reference or 'N/A'"/></h4></p>-->
+<!--                            </div>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </t>-->
+<!--            </t>-->
+<!--        </t>-->
+<!--    </template>-->
+
+    <template id="work_experiences_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                    }
+                    .header_text{
+                        text-align: center;
+                    }
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                    }
+                    th, td {
+                        border: 1px solid #dddddd;
+                        text-align: center;
+                    }
+                    th {
+                        background-color: #6cc1ed;
+                    }
+                    td {
+                        height: 50px;
+                        text-align: center;
+                        margin: 20px 0px;
+                    }
+                    tr {
+                        text-align: center;
+                    }
+                    .odd{
+                        background-color: #7f9d9e;
+                        color: white;
+                    }
+                    .even{
+                        background-color: #cfbbb4;
+                    }
+                </style>
+                <div class="header_text">
+                    <h1>
+                        CÔNG TY CỔ PHẦN NTQ SOLUTION
+                    </h1>
+                    <h2>NTQ SOLUTION JOINT STOCK COMPANY</h2>
+                    <h2>Work Experiences Report</h2>
+                    <p><h5>Date: <t t-esc="time.strftime('%Y-%m-%d')"/></h5></p>
+                    <hr/>
+                </div>
+                <div class="content">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Employee Name</th>
+                                <th>Company</th>
+                                <th>From Date</th>
+                                <th>To Date</th>
+                                <th>Job</th>
+                                <th>Role</th>
+                                <th>Level</th>
+                                <th>Reference</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="work_experience">
+                                <tr style="padding-top: 20px" t-attf-class="{{ 'even' if work_experience_index % 2 == 0 else 'odd' }}">
+                                    <td><t t-esc="work_experience.employee_id.name or 'N/A'"/></td>
+                                    <td><t t-esc="work_experience.company or 'N/A'"/></td>
+                                    <td><t t-esc="work_experience.from_date"/></td>
+                                    <td><t t-esc="work_experience.to_date or 'N/A'"/></td>
+                                    <td><t t-esc="work_experience.job_id.name or 'N/A'"/></td>
+                                    <td><t t-esc="work_experience.role_id.name or 'N/A'"/></td>
+                                    <td><t t-esc="work_experience.level_id.name or 'N/A'"/></td>
+                                    <td><t t-esc="work_experience.reference or 'N/A'"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <hr/>
+                    <p>
+                        Mọi thắc mắc anh/chị vui lòng liên hệ Bộ phận Dịch vụ Nhân sự để được hỗ trợ giải đáp: PD.HS.CnB@ntq-solution.com.vn.
+                    </p>
+                    <p>Trân trọng./.</p>
+                    <p>HS Department.</p>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="other_template" name="Some Python Template">
+        <html>
+            <head>
+                <t t-call-assets="web.assets_frontend" />
+            </head>
+            <body>
+                <h3 style="text-align: center; margin:100px 0px">Customize By Phạm Tiến Tâm</h3>
+            </body>
+        </html>
+    </template>
+</odoo>
